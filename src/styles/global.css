@@ -100,28 +100,6 @@ body {
     font: var(--gpText-BodySmall);
 }
 
-/* Dummy Header Styles (minimal, no complex styling) */
-.dummy-header {
-    display: flex;
-    gap: 1.5rem;
-    padding: 1rem 2rem;
-    background-color: var(--background-highlight);
-    border-bottom: 1px solid var(--background-tertiary);
-}
-.dummy-header a {
-    color: var(--text-dim);
-    text-decoration: none;
-    font: var(--gpText-BodyMedium);
-    transition: color 0.2s;
-}
-.dummy-header a:hover {
-    color: var(--color-primary);
-}
-.dummy-header .active {
-    color: var(--text-main);
-    font-weight: 700;
-}
-
 /* Reusable Component Styles */
 .search-container {
     display: flex;
@@ -152,7 +130,7 @@ body {
     cursor: pointer;
 }
 
-/* Dropdown Menu */
+/* Dropdown Menu (generic) */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -417,4 +395,183 @@ body {
     font: var(--gpText-HeadingLarge);
     margin-bottom: 1.5rem;
     color: var(--text-main);
+}
+
+/* ========== HEADER STYLES  ========== */
+
+/* Primary Header */
+.primary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 59px;
+    background: var(--background-main);
+    padding: 0 20px;
+    border-bottom: 1px solid var(--background-tertiary);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* between arrows */
+}
+
+.nav-arrow {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 17px 5px 18px 22px;
+    display: flex;
+    align-items: center;
+}
+.nav-arrow:first-child {
+    padding-left: 22px;
+}
+.nav-arrow:last-child {
+    padding-right: 22px;
+}
+.nav-arrow:hover svg path {
+    fill: var(--color-primary);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-left: 20px;
+    margin-right: 66px;
+}
+.steam-text {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--text-dim);
+}
+
+.main-nav {
+    display: flex;
+    gap: 66px;
+}
+.main-nav a {
+    font-family: var(--font-family);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.main-nav a:hover {
+    color: var(--color-primary);
+}
+.main-nav a.active {
+    color: var(--color-primary);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 57px;
+}
+
+.friend-notif-group {
+    display: flex;
+    gap: 10px;
+}
+.icon-button {
+    border-radius: 3px;
+    width: 56px;
+    height: 37px;
+    background: var(--background-highlight);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.icon-button:hover {
+    background: var(--background-hover);
+}
+
+/* Account Dropdown */
+.account-dropdown {
+    position: relative;
+}
+.account-button {
+    width: 210px;
+    height: 39px;
+    background: var(--background-highlight);
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px 0 3px;
+    cursor: pointer;
+}
+.pfp-placeholder {
+    width: 31px;
+    height: 31px;
+    background: black;
+    border-radius: 2px;
+}
+.account-name {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--text-main);
+    padding: 11px 8px 11px 0;
+    white-space: nowrap;
+}
+.account-balance {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--text-dim);
+    padding: 11px 8px 11px 0;
+}
+.dropdown-arrow {
+    padding: 9.5px 0 9.5px 8px;
+    display: flex;
+}
+.account-dropdown .dropdown-menu {
+    right: 0;
+    left: auto;
+    min-width: 200px;
+}
+
+.help-view-group {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+.help-text,
+.view-text {
+    font-family: var(--font-family);
+    font-weight: 400;
+    font-size: 16px;
+    color: var(--text-dim);
+    cursor: pointer;
+}
+.view-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+.view-wrapper:hover .view-text {
+    color: var(--text-main);
+}
+.view-wrapper:hover svg path {
+    fill: var(--text-main);
+}
+
+/* Secondary Header */
+.secondary-header {
+    background: var(--background-tertiary);
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
