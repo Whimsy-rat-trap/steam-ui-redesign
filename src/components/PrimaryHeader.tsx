@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import AccountDropdown from './AccountDropdown';
 
@@ -54,11 +54,47 @@ const ViewDropdownIcon = () => (
     </svg>
 );
 
-const PrimaryHeader: React.FC = () => {
+const NavDropdown: React.FC<{ label: string; items: string[]; basePath: string }> = ({ label, items, basePath }) => {
+    const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
 
+    const handleItemClick = (item: string) => {
+        const path = `${basePath}/${item.toLowerCase().replace(/ /g, '-')}`;
+        navigate(path);
+        setIsOpen(false);
+    };
+
+    return (
+        <div
+            className="nav-dropdown"
+            onMouseEnter={() => setIsOpen(true)}
+            onMouseLeave={() => setIsOpen(false)}
+        >
+            <NavLink to={basePath} className={({ isActive }) => (isActive ? 'active' : '')}>
+                {label}
+            </NavLink>
+            {isOpen && (
+                <div className="dropdown-menu">
+                    {items.map(item => (
+                        <button key={item} className="dropdown-item" onClick={() => handleItemClick(item)}>
+                            {item}
+                        </button>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
+const PrimaryHeader: React.FC = () => {
+    const navigate = useNavigate();
     const goBack = () => navigate(-1);
     const goForward = () => navigate(1);
+
+    const storeItems = ['Home', 'Browse', 'Discover', 'Wishlist', 'Cart', 'Points Shop', 'Gift Cards', 'News', 'Stats'];
+    const libraryItems = ['Home', 'Collections', 'Game Servers', 'Activate a Product', 'Add a non-Steam game'];
+    const communityItems = ['Home', 'Discussions', 'Market', 'Workshop', 'Broadcasts'];
+    const userItems = ['Profile', 'Friends & Groups', 'Inventory', 'Badges'];
 
     return (
         <header className="primary-header">
@@ -70,10 +106,10 @@ const PrimaryHeader: React.FC = () => {
                     <span className="steam-text">Steam®</span>
                 </div>
                 <nav className="main-nav">
-                    <NavLink to="/store" className={({ isActive }) => (isActive ? 'active' : '')}>Store</NavLink>
-                    <NavLink to="/library" className={({ isActive }) => (isActive ? 'active' : '')}>Library</NavLink>
-                    <NavLink to="/community" className={({ isActive }) => (isActive ? 'active' : '')}>Community</NavLink>
-                    <NavLink to="/user" className={({ isActive }) => (isActive ? 'active' : '')}>User Page</NavLink>
+                    <NavDropdown label="Store" items={storeItems} basePath="/store" />
+                    <NavDropdown label="Library" items={libraryItems} basePath="/library" />
+                    <NavDropdown label="Community" items={communityItems} basePath="/community" />
+                    <NavDropdown label="User's Page" items={userItems} basePath="/user" />
                 </nav>
             </div>
             <div className="header-right">
