@@ -13,9 +13,20 @@ const SearchIcon = () => (
     </svg>
 );
 
-const Search: React.FC = () => {
+interface SearchProps {
+    customWidth?: string;
+    customHeight?: string;
+    background?: string;
+}
+
+const Search: React.FC<SearchProps> = ({ customWidth, customHeight, background }) => {
+    const style = {
+        width: customWidth || '100%',
+        height: customHeight || 'auto',
+        background: background || 'var(--background-tertiary)',
+    };
     return (
-        <div className="search-container">
+        <div className="search-container" style={style}>
             <input type="text" placeholder="Search..." className="search-input" />
             <div className="search-icon">
                 <SearchIcon />

@@ -49,12 +49,12 @@ const StoreSecondaryHeader: React.FC = () => {
                 ))}
             </div>
             <div className="store-secondary-search">
-                <Search />
+                <Search customWidth="507px" customHeight="44px" background="var(--background-main20)" />
             </div>
             <div className="store-actions">
                 <button className="store-action-button" onClick={() => navigate('/store/wishlist')}>Wishlist</button>
                 <button className="store-action-button" onClick={() => navigate('/store/cart')}>Cart</button>
-                <button className="settings-button" onClick={() => console.log('Settings')}>
+                <button className="settings-button">
                     <SettingsIcon />
                 </button>
             </div>
